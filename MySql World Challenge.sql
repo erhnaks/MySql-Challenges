@@ -56,7 +56,9 @@ SELECT * FROM country WHERE HeadOfState = 'Elizabeth II';
 
 -- Q-13 List the top ten countries with the smallest population-to-area ratio. Discard any countries with a ratio of 0.
 SELECT * FROM country;
-SELECT Name, Population/SurfaceArea AS RATIO FROM country WHERE (Population/SurfaceArea) >0 ORDER BY RATIO LIMIT 10 ;
+SELECT `name`, Population/SurfaceArea AS RATIO FROM country 
+WHERE (Population/SurfaceArea) >0 
+ORDER BY RATIO LIMIT 10 ;
 
 -- Q-14 List every unique world language.
 SELECT DISTINCT(`language`) FROM countrylanguage;

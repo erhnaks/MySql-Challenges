@@ -48,7 +48,7 @@ SELECT DISTINCT last_name FROM actor GROUP BY last_name HAVING COUNT(last_name)=
 
 -- Q-12 Using HAVING, list the last names that appear more than once, from highest to lowest frequency.
 
-SELECT last_name FROM actor GROUP BY last_name HAVING COUNT(last_name)=1 ORDER BY last_name DESC;
+SELECT last_name FROM actor GROUP BY last_name HAVING COUNT(last_name) > 1 ORDER BY last_name DESC;
 
 -- Q-13 Which actor has appeared in the most films?
 
@@ -56,7 +56,11 @@ SELECT actor_id, COUNT(actor_id) AS actor_count FROM film_actor GROUP BY actor_i
 
 -- Q-14 When is 'Academy Dinosaur' due?
 
-SELECT rental_duration FROM film WHERE title='Academy Dinosaur';
+SELECT film.title, rental.rental_date, film.rental_duration FROM film
+JOIN inventory ON film.film_id = inventory.film_id
+JOIN rental ON rental.inventory_id = inventory.inventory_id
+WHERE film.title = 'Academy Dinosaur'
+AND rental.return_date IS NULL;
 
 -- Q-15 What is the average runtime of all films?
 
